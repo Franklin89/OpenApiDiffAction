@@ -69326,32 +69326,35 @@ const github = __nccwpck_require__(5438);
 const openapiDiff = __nccwpck_require__(9325);
 const fs = __nccwpck_require__(7147);
 const glob = __nccwpck_require__(1957);
+const path = __nccwpck_require__(1017);
 
 async function run() {
   let baseFiles = glob.sync(core.getInput('baseFile', { required: true }));
   let headFiles = glob.sync(core.getInput('headFile', { required: true }));
 
-  let githubToken = core.getInput('github_token', { required: true });
+  let githubToken = core.getInput('github_token', { required: false });
 
   if (baseFiles.length != headFiles.length) {
-    console.error('Invalid input files');
+    core.error('Invalid input files');
     return;
   }
 
-  let message = "## OpenApi Specification changes \n\n";
+  let message = "## OpenApi Specification changes";
 
   for (let index = 0; index < baseFiles.length; index++) {
-
     const basefile = baseFiles[index];
-    const headfile = headFiles[index];
+    const headfile = headFiles[headFiles.findIndex(element => path.basename(element) === path.basename(basefile))];
 
     const result = await diffSpecs(basefile, headfile);
-
-    console.log(result);
+    message += `\n\n### ${path.basename(basefile)}\n\n`;
     message += markdownMessage(result);
   }
 
-  comment(githubToken, message)
+  core.info(message);
+
+  if (githubToken) {
+    comment(githubToken, message)
+  }
 }
 
 function diffSpecs(baseFile, headFile) {
