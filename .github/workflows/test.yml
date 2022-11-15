@@ -22,4 +22,5 @@ jobs:
     - uses: actions/checkout@v3
     - uses: ./
       with:
-        milliseconds: 1000
+        baseFile: ./testdata/base/*.json
+        headFile: ./testdata/head/*.json
