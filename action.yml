@@ -1,13 +1,19 @@
 name: 'Open API Diff'
-description: 'Wait a designated number of milliseconds'
+description: 'Compares one or more Open API Specification files'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  baseFiles:
+    description: 'pattern of base openapi files'
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  headFiles:
+    description: 'pattern of head openapi files'
+    required: true
+  github_token:
+    description: 'token to create issue with'
+    required: true
+  repo:
+    description: The owner and repository name. e.g.) Codertocat/Hello-World
+    required: false
+    default: ${{ github.repository }}
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: 'index.js'
