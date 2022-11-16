@@ -44,15 +44,14 @@ git add dist
 
 Users shouldn't consume the action from main since that would be latest code and actions can break compatibility between major versions.
 
-Checkin to the v1 release branch
+Create a tag when a new version is ready.
 
 ```bash
-git checkout -b v1
-git commit -a -m "v1 release"
-```
-
-```bash
-git push origin v1
+npm run prepare
+git add .
+git commit -m "Prepare new version"
+git tag -a -m "My first action release" v1.1
+git push --follow-tags
 ```
 
 Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
