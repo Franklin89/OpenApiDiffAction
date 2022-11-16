@@ -2,5 +2,4 @@ dist/** -diff linguist-generated=true
 
 * text=auto
 
-dist/index.js text eol=lf
-dist/index.map.js text eol=lf
+dist/** text eol=lf
