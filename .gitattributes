@@ -2,4 +2,4 @@ dist/** -diff linguist-generated=true
 
 * text=auto
 
-dist/** text eol=lf
+dist/** text eol=crlf
