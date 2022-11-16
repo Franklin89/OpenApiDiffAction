@@ -69329,8 +69329,8 @@ const glob = __nccwpck_require__(1957);
 const path = __nccwpck_require__(1017);
 
 async function run() {
-  let baseFiles = glob.sync(core.getInput('baseFile', { required: true }));
-  let headFiles = glob.sync(core.getInput('headFile', { required: true }));
+  let baseFiles = glob.sync(core.getInput('baseFiles', { required: true }));
+  let headFiles = glob.sync(core.getInput('headFiles', { required: true }));
 
   let githubToken = core.getInput('github_token', { required: false });
 

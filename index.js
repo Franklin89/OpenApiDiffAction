@@ -6,8 +6,8 @@ const glob = require("glob");
 const path = require('path');
 
 async function run() {
-  let baseFiles = glob.sync(core.getInput('baseFile', { required: true }));
-  let headFiles = glob.sync(core.getInput('headFile', { required: true }));
+  let baseFiles = glob.sync(core.getInput('baseFiles', { required: true }));
+  let headFiles = glob.sync(core.getInput('headFiles', { required: true }));
 
   let githubToken = core.getInput('github_token', { required: false });
 
